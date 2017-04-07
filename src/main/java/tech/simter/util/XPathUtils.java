@@ -69,6 +69,9 @@ public class XPathUtils {
 
   /**
    * 删除 xml 中无用的空白字符，包括空格、换行
+   *
+   * @param xml 原始的 xml
+   * @return 去除空白后的 xml
    */
   public static String clean(String xml) {
     return xml == null ? xml : xml.replaceAll("(?<=>)\\s+(?=<)", "");
@@ -105,7 +108,7 @@ public class XPathUtils {
   /**
    * 获取匹配指定路径的所有节点
    *
-   * @param xml   文档
+   * @param node  节点
    * @param xpath 路径
    * @return 匹配指定路径的所有节点(按节点出现的顺序)，找不到则返回 null
    */
@@ -149,7 +152,7 @@ public class XPathUtils {
   /**
    * 获取匹配指定路径的首个子节点
    *
-   * @param xml   文档
+   * @param node  节点
    * @param xpath 路径
    * @return 首个子节点，找不到则返回 null
    */
@@ -165,7 +168,7 @@ public class XPathUtils {
   /**
    * 获取匹配指定路径的首个子节点的文本内容
    *
-   * @param xml   文档
+   * @param node  节点
    * @param xpath 路径
    * @return 首个子节点的文本内容，找不到子节点则返回 null
    */
