@@ -5,7 +5,7 @@
     <groupId>tech.simter</groupId>
     <artifactId>simter-parent</artifactId>
     <version>0.3-SNAPSHOT</version>
-    <relativePath></relativePath>
+    <relativePath/>
   </parent>
   <artifactId>simter-util</artifactId>
   <packaging>jar</packaging>
@@ -55,6 +55,11 @@
     <dependency>
       <groupId>io.reactivex.rxjava2</groupId>
       <artifactId>rxjava</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.modelmapper</groupId>
+      <artifactId>modelmapper</artifactId>
       <optional>true</optional>
     </dependency>
   </dependencies>
