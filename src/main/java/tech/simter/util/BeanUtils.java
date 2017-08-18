@@ -1,6 +1,10 @@
 package tech.simter.util;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.Provider;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Bean property copy util tools.
@@ -10,10 +14,20 @@ import org.modelmapper.ModelMapper;
 public class BeanUtils {
   private static ModelMapper mapper;
 
+  /**
+   * Construct Set property to LinkedHashedSet instance to keep orders.
+   */
+  private static Provider<Set> provider4ConstructSet2LinkedHashedSet = request -> {
+    Class<?> clazz = request.getRequestedType();
+    return clazz.isAssignableFrom(Set.class) ? new LinkedHashSet<>() : null;
+  };
+
   static {
     // initial {@link ModelMapper} instance
     mapper = new ModelMapper();
-    mapper.getConfiguration().setFieldMatchingEnabled(true);
+    mapper.getConfiguration()
+      .setFieldMatchingEnabled(true)
+      .setProvider(provider4ConstructSet2LinkedHashedSet);
   }
 
   /**
