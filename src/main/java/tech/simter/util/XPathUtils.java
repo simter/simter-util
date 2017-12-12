@@ -18,16 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 出租车监控调度系统通用工具方法
+ * Xpath util tools.
  *
- * @author RJ 2017-03-24
+ * @author RJ
  */
 public class XPathUtils {
   private static Document parse(String xml) {
     try {
       InputSource source = new InputSource(new StringReader(xml));
       DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
-      // domFactory.setNamespaceAware(true); // 设为true将导致节点 <xx .../> 找不到
+      // domFactory.setNamespaceAware(true); // 设为 true 将导致节点 <xx .../> 找不到
       DocumentBuilder builder = domFactory.newDocumentBuilder();
       return builder.parse(source);
     } catch (ParserConfigurationException | SAXException | IOException e) {
