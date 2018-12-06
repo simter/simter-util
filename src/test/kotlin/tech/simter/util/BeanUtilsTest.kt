@@ -1,8 +1,7 @@
 package tech.simter.util
 
-import org.hamcrest.CoreMatchers.`is`
-import org.junit.Assert.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import tech.simter.util.bean.Location
 import tech.simter.util.bean.UserDto
 import tech.simter.util.bean.UserPo
@@ -23,10 +22,10 @@ class BeanUtilsTest {
     po.location!!.name = "location"
     val dto = BeanUtils.assign(UserDto::class.java, po)
 
-    assertThat<Int>(dto!!.id, `is`<Int>(po.id))
-    assertThat<String>(dto.account, `is`<String>(po.account))
-    assertThat<Int>(dto.locationId, `is`<Int>(po.location!!.id))
-    assertThat<String>(dto.locationName, `is`<String>(po.location!!.name))
+    assertEquals(po.id, dto!!.id)
+    assertEquals(po.account, dto.account)
+    assertEquals(po.location!!.id, dto.locationId)
+    assertEquals(po.location!!.name, dto.locationName)
   }
 
   @Test
@@ -41,9 +40,9 @@ class BeanUtilsTest {
     val dto = UserDto()
     BeanUtils.assign(dto, po)
 
-    assertThat<Int>(dto.id, `is`<Int>(po.id))
-    assertThat<String>(dto.account, `is`<String>(po.account))
-    assertThat<Int>(dto.locationId, `is`<Int>(po.location!!.id))
-    assertThat<String>(dto.locationName, `is`<String>(po.location!!.name))
+    assertEquals(po.id, dto.id)
+    assertEquals(po.account, dto.account)
+    assertEquals(po.location!!.id, dto.locationId)
+    assertEquals(po.location!!.name, dto.locationName)
   }
 }

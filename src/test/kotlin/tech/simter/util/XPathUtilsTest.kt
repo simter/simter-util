@@ -1,10 +1,12 @@
 package tech.simter.util
 
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.emptyArray
-import org.junit.Assert.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Test
 
 /**
  * http://rongjih.blog.163.com/blog/static/33574461201552932312681/
@@ -25,22 +27,22 @@ class XPathUtilsTest {
 
   @Test
   fun getFirstNodeContentFromOneBookXml() {
-    assertThat<String>(XPathUtils.getFirstNodeContent(oneBookXml, "/books/notExists"), nullValue())
-    assertThat<String>(XPathUtils.getFirstNodeContent(oneBookXml, "/books/book"), `is`("book1"))
-    assertThat<String>(XPathUtils.getFirstNodeContent(oneBookXml, "/books/book[1]"), `is`("book1"))
+    assertNull(XPathUtils.getFirstNodeContent(oneBookXml, "/books/notExists"))
+    assertEquals("book1", XPathUtils.getFirstNodeContent(oneBookXml, "/books/book"))
+    assertEquals("book1", XPathUtils.getFirstNodeContent(oneBookXml, "/books/book[1]"))
 
-    assertThat<String>(XPathUtils.getFirstNodeContent(oneBookXml, "//book"), `is`("book1"))
-    assertThat<String>(XPathUtils.getFirstNodeContent(oneBookXml, "//book[1]"), `is`("book1"))
+    assertEquals("book1", XPathUtils.getFirstNodeContent(oneBookXml, "//book"))
+    assertEquals("book1", XPathUtils.getFirstNodeContent(oneBookXml, "//book[1]"))
   }
 
   @Test
   fun getFirstNodeContentFromTwoBooksXml() {
-    assertThat(XPathUtils.getFirstNodeContent(twoBooksXml, "/books/notExists"), nullValue())
-    assertThat(XPathUtils.getFirstNodeContent(twoBooksXml, "/books/book"), `is`("book1"))
-    assertThat(XPathUtils.getFirstNodeContent(twoBooksXml, "/books/book[2]"), `is`("book2"))
+    assertNull(XPathUtils.getFirstNodeContent(twoBooksXml, "/books/notExists"))
+    assertEquals("book1", XPathUtils.getFirstNodeContent(twoBooksXml, "/books/book"))
+    assertEquals("book2", XPathUtils.getFirstNodeContent(twoBooksXml, "/books/book[2]"))
 
-    assertThat(XPathUtils.getFirstNodeContent(twoBooksXml, "//book"), `is`("book1"))
-    assertThat(XPathUtils.getFirstNodeContent(twoBooksXml, "//book[2]"), `is`("book2"))
+    assertEquals("book1", XPathUtils.getFirstNodeContent(twoBooksXml, "//book"))
+    assertEquals("book2", XPathUtils.getFirstNodeContent(twoBooksXml, "//book[2]"))
   }
 
   @Test
@@ -55,8 +57,8 @@ class XPathUtilsTest {
 
   @Test
   fun findNodesContentFromTwoBooksXml() {
-    assertThat<Array<String?>>(XPathUtils.findNodesContent(twoBooksXml, "/books/notExists"), emptyArray())
-    assertThat<Array<String?>>(XPathUtils.findNodesContent(twoBooksXml, "/books/book"), allOf(
+    assertThat(XPathUtils.findNodesContent(twoBooksXml, "/books/notExists"), emptyArray())
+    assertThat(XPathUtils.findNodesContent(twoBooksXml, "/books/book"), allOf(
       Matchers.notNullValue(),
       Matchers.arrayWithSize(2),
       Matchers.arrayContaining("book1", "book2")
@@ -72,10 +74,10 @@ class XPathUtilsTest {
       "  <msg/>" +
       "</book>"
     val book = XPathUtils.getFirstNode(xml, "/book")
-    assertThat<String>(XPathUtils.getChildNodeContent(book!!, "code"), `is`("code"))
-    assertThat<String>(XPathUtils.getChildNodeContent(book, "//code"), `is`("code"))
-    assertThat<String>(XPathUtils.getChildNodeContent(book, "name"), `is`("name"))
-    assertThat<String>(XPathUtils.getChildNodeContent(book, "msg"), `is`(""))
-    assertThat<String>(XPathUtils.getChildNodeContent(book, "not-exists"), nullValue())
+    assertEquals("code", XPathUtils.getChildNodeContent(book!!, "code"))
+    assertEquals("code", XPathUtils.getChildNodeContent(book, "//code"))
+    assertEquals("name", XPathUtils.getChildNodeContent(book, "name"))
+    assertEquals("", XPathUtils.getChildNodeContent(book, "msg"))
+    assertNull(XPathUtils.getChildNodeContent(book, "not-exists"))
   }
 }
