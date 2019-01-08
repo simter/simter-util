@@ -4,7 +4,7 @@
 
 - BeanUtils.assign : 类似于 JavaScript 的 `Object.assign` 方法
 - XPathUtils : 使用标准的 xpath 查找 xml 节点
-
+- RandomUtils : 随机生成整数或字符串，获取下一个 ID 值
 
 ## 安装
 
@@ -12,7 +12,7 @@
 <dependency>
   <groupId>tech.simter</groupId>
   <artifactId>simter-util</artifactId>
-  <version>0.3.0</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 

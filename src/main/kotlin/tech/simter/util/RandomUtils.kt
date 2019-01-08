@@ -2,6 +2,11 @@ package tech.simter.util
 
 import java.util.*
 
+/**
+ * Random util tools.
+ *
+ * @author RJ
+ */
 object RandomUtils {
   /** Generate a random Boolean value. */
   fun randomBoolean(): Boolean = Random().nextBoolean()

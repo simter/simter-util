@@ -4,6 +4,7 @@ Some util tools. Includes:
 
 - BeanUtils.assign : similar to JavaScript `Object.assign` method
 - XPathUtils : find xml node by standard xpath
+- RandomUtils : generate random Int or String, get a nextId
 
 ## Installation
 
@@ -11,7 +12,7 @@ Some util tools. Includes:
 <dependency>
   <groupId>tech.simter</groupId>
   <artifactId>simter-util</artifactId>
-  <version>0.3.0</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 
