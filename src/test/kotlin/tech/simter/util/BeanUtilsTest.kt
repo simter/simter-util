@@ -22,7 +22,7 @@ class BeanUtilsTest {
     po.location!!.name = "location"
     val dto = BeanUtils.assign(UserDto::class.java, po)
 
-    assertEquals(po.id, dto!!.id)
+    assertEquals(po.id!!, dto!!.id)
     assertEquals(po.account, dto.account)
     assertEquals(po.location!!.id, dto.locationId)
     assertEquals(po.location!!.name, dto.locationName)
@@ -40,7 +40,7 @@ class BeanUtilsTest {
     val dto = UserDto()
     BeanUtils.assign(dto, po)
 
-    assertEquals(po.id, dto.id)
+    assertEquals(po.id!!, dto.id)
     assertEquals(po.account, dto.account)
     assertEquals(po.location!!.id, dto.locationId)
     assertEquals(po.location!!.name, dto.locationName)
