@@ -33,13 +33,21 @@ object RandomUtils {
     }
   }
 
-  private var idTypes = HashMap<String, Int>()
-  /**
-   * Get the next Int for the specific type.
-   */
-  fun nextId(type: String = ""): Int {
+  private var idTypes = HashMap<String, Long>()
+  /** Get the next Long for the specific type */
+  fun nextLong(type: String = ""): Long {
     if (!idTypes.containsKey(type)) idTypes.put(type, 1)
     else idTypes.put(type, idTypes[type]!! + 1)
     return idTypes[type]!!
+  }
+
+  /** Get the next Int for the specific type */
+  fun nextInt(type: String = ""): Int {
+    return nextLong(type).toInt()
+  }
+
+  /** Get the next Int id for the specific type */
+  fun nextId(type: String = ""): Int {
+    return nextLong(type).toInt()
   }
 }
