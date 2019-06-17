@@ -18,6 +18,7 @@ object BeanUtils {
    *
    * @return [ModelMapper] instance
    */
+  @Suppress("MemberVisibilityCanBePrivate")
   var defaultMapper: ModelMapper? = null
     private set
 
@@ -33,7 +34,7 @@ object BeanUtils {
     defaultMapper = ModelMapper()
     defaultMapper!!.configuration
       .setFieldMatchingEnabled(true)
-      .setProvider(provider4ConstructSet2LinkedHashedSet)
+      .provider = provider4ConstructSet2LinkedHashedSet
   }
 
   /**
