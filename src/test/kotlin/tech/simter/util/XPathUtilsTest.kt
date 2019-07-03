@@ -1,9 +1,6 @@
 package tech.simter.util
 
-import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers
-import org.hamcrest.Matchers.emptyArray
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
@@ -47,22 +44,20 @@ class XPathUtilsTest {
 
   @Test
   fun findNodesContentFromOneBookXml() {
-    assertThat(XPathUtils.findNodesContent(oneBookXml, "/books/notExists"), emptyArray())
-    assertThat(XPathUtils.findNodesContent(oneBookXml, "/books/book"), allOf(
-      Matchers.notNullValue(),
-      Matchers.arrayWithSize(1),
-      Matchers.arrayContaining("book1")
-    ))
+    assertThat(XPathUtils.findNodesContent(oneBookXml, "/books/notExists")).isEmpty()
+    assertThat(XPathUtils.findNodesContent(oneBookXml, "/books/book"))
+      .isNotNull
+      .hasSize(1)
+      .contains("book1")
   }
 
   @Test
   fun findNodesContentFromTwoBooksXml() {
-    assertThat(XPathUtils.findNodesContent(twoBooksXml, "/books/notExists"), emptyArray())
-    assertThat(XPathUtils.findNodesContent(twoBooksXml, "/books/book"), allOf(
-      Matchers.notNullValue(),
-      Matchers.arrayWithSize(2),
-      Matchers.arrayContaining("book1", "book2")
-    ))
+    assertThat(XPathUtils.findNodesContent(twoBooksXml, "/books/notExists")).isEmpty()
+    assertThat(XPathUtils.findNodesContent(twoBooksXml, "/books/book"))
+      .isNotNull
+      .hasSize(2)
+      .contains("book1", "book2")
   }
 
   @Test
