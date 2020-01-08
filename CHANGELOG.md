@@ -1,5 +1,10 @@
 # simter-util changelog
 
+## 1.2.0-M1 - 2020-01-08
+
+- Upgrade to simter-build-1.3.0-M11
+- Support nullable javatime
+
 ## 1.1.0 - 2019-07-03
 
 - Use JUnit5|AssertJ instead of JUnit4|Hamcrest
