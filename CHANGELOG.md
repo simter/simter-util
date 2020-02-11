@@ -1,8 +1,12 @@
 # simter-util changelog
 
+## 1.2.0-M2 - 2020-02-11
+
+- Upgrade to simter-dependencies-1.3.0-M13
+
 ## 1.2.0-M1 - 2020-01-08
 
-- Upgrade to simter-build-1.3.0-M11
+- Upgrade to simter-dependencies-1.3.0-M11
 - Support nullable javatime
 
 ## 1.1.0 - 2019-07-03
