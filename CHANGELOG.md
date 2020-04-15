@@ -1,5 +1,15 @@
 # simter-util changelog
 
+## 1.2.0-M3- 2020-04-15
+
+- Add new method `BeanUtils.diff`
+- Add new method `RandomUtils.randomBigDecimal(from, until, scale)`
+- Add new method `RandomUtils.randomLong(from, until)`
+- Add len param to `RandomUtils.randomString(len, prefix)`
+- Avoid conflict on `RandomUtils.nextInt()` and `.nextLong()`
+- Refactor `RandomUtils.randomInt(start: Int = 0, end: Int = 9): Int` to `randomInt(from: Int = 0, until: Int = 100): Int`
+- Upgrade to simter-dependencies-1.3.0-M14
+
 ## 1.2.0-M2 - 2020-02-11
 
 - Upgrade to simter-dependencies-1.3.0-M13
