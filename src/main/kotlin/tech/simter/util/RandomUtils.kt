@@ -25,14 +25,18 @@ object RandomUtils {
    * Generate a random string with a specific prefix.
    *
    * Return a random uuid string if not supply the prefix.
+   * Truncate the return to the limit len if [len] greater than zero.
    */
-  fun randomString(prefix: String = ""): String {
-    return if (prefix == "") UUID.randomUUID().toString()
+  fun randomString(len: Int = 0, prefix: String = ""): String {
+    val s = if (prefix == "") UUID.randomUUID().toString()
     else {
-      if (!prefixMap.containsKey(prefix)) prefixMap.put(prefix, 1)
-      else prefixMap.put(prefix, prefixMap[prefix]!! + 1)
+      if (!prefixMap.containsKey(prefix)) prefixMap[prefix] = 1
+      else prefixMap[prefix] = prefixMap[prefix]!! + 1
       "$prefix${prefixMap[prefix]}"
     }
+
+    return if (len > 0 && s.length > len) s.substring(0, len)
+    else s
   }
 
   private var intTypes = HashMap<String, Int>()
