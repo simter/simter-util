@@ -20,6 +20,15 @@ object RandomUtils {
     return kotlin.random.Random.Default.nextInt(from, until)
   }
 
+  /**
+   * Generate a random Long with a specific range.
+   *
+   * If not supply the range, it will be [0, 100).
+   */
+  fun randomLong(from: Long = 0, until: Long = 100): Long {
+    return kotlin.random.Random.Default.nextLong(from, until)
+  }
+
   private var prefixMap = HashMap<String, Int>()
   /**
    * Generate a random string with a specific prefix.
