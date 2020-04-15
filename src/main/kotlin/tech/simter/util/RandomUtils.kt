@@ -1,5 +1,7 @@
 package tech.simter.util
 
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.*
 
 /**
@@ -27,6 +29,16 @@ object RandomUtils {
    */
   fun randomLong(from: Long = 0, until: Long = 100): Long {
     return kotlin.random.Random.Default.nextLong(from, until)
+  }
+
+  /**
+   * Generate a random BigDecimal with a specific scale.
+   */
+  fun randomBigDecimal(from: Int = 0, until: Int = 100, scale: Int = 2): BigDecimal {
+    return BigDecimal(kotlin.random.Random.nextDouble(
+      from = from.toDouble(),
+      until = until.toDouble()
+    )).setScale(scale, RoundingMode.HALF_UP)
   }
 
   private var prefixMap = HashMap<String, Int>()
