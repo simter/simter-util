@@ -14,9 +14,11 @@ object RandomUtils {
   /**
    * Generate a random Int with a specific range.
    *
-   * If not supply the range, it will be [0, 9].
+   * If not supply the range, it will be [0, 100).
    */
-  fun randomInt(start: Int = 0, end: Int = 9): Int = Random().nextInt(end + 1 - start) + start
+  fun randomInt(from: Int = 0, until: Int = 100): Int {
+    return kotlin.random.Random.Default.nextInt(from, until)
+  }
 
   private var prefixMap = HashMap<String, Int>()
   /**
