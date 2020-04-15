@@ -3,6 +3,7 @@ package tech.simter.util
 import org.modelmapper.ModelMapper
 import org.modelmapper.Provider
 import java.util.*
+import kotlin.reflect.full.memberProperties
 
 /**
  * Bean property copy util tools.
@@ -64,4 +65,56 @@ object BeanUtils {
     if (target == null || sources.isEmpty()) return
     for (source in sources) defaultMapper.map(source, target)
   }
+
+  /**
+   * Compare [newObj] with [oldObj] to find all difference properties in [newObj].
+   *
+   * Properties in [newObj] treat as difference if not match the [equalizer].
+   * Default [equalizer] is simple implemented as value equals, two null value is treated as equals.
+   */
+  fun diff(
+    newObj: Any,
+    oldObj: Any,
+    equalizer: (propertyName: String, newValue: Any?, oldValue: Any?) -> Boolean = { _, newValue, oldValue ->
+      newValue == oldValue
+    },
+    ignoreNullValue: Boolean = false
+  ): List<Diff> {
+    var oldValues = if (oldObj is Map<*, *>) oldObj.mapKeys { it.key.toString() }
+    else oldObj.javaClass.kotlin.memberProperties
+      .filter { it.visibility == kotlin.reflect.KVisibility.PUBLIC } // only public properties
+      .associateBy({ it.name }, { it.get(oldObj) })
+    if (ignoreNullValue) oldValues = oldValues.filter { it.value != null } // filter not null value
+
+    var newValues = if (newObj is Map<*, *>) newObj.mapKeys { it.key.toString() }
+    else newObj.javaClass.kotlin.memberProperties
+      .filter { it.visibility == kotlin.reflect.KVisibility.PUBLIC } // only public properties
+      .associateBy({ it.name }, { it.get(newObj) })
+    if (ignoreNullValue) newValues = newValues.filter { it.value != null } // filter not null value
+
+    return diff(newValues = newValues, oldValues = oldValues, equalizer = equalizer)
+  }
+
+  /**
+   * Find all difference values from [newValues] compare to [oldValues] by the [equalizer] with same key.
+   *
+   * Default [equalizer] is simple implemented as value equals, two null value is treated as equals.
+   */
+  fun diff(
+    newValues: Map<String, Any?>,
+    oldValues: Map<String, Any?>,
+    equalizer: (propertyName: String, newValue: Any?, oldValue: Any?) -> Boolean = { _, newValue, oldValue ->
+      newValue == oldValue
+    }
+  ): List<Diff> {
+    return newValues.filterNot { equalizer(it.key, it.value, oldValues[it.key]) }
+      .map { Diff(name = it.key, newValue = it.value, oldValue = oldValues[it.key]) }
+  }
+
+  /** A new and old value holder */
+  data class Diff(
+    val name: String,
+    val newValue: Any?,
+    val oldValue: Any?
+  )
 }
