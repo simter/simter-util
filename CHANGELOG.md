@@ -1,6 +1,10 @@
 # simter-util changelog
 
-## 1.2.0-M3- 2020-04-15
+## 2.0.0-M1 - 2020-06-02
+
+- Upgrade to simter-dependencies-2.0.0-M1
+
+## 1.2.0-M3 - 2020-04-15
 
 - Add new method `BeanUtils.diff`
 - Add new method `RandomUtils.randomBigDecimal(from, until, scale)`
