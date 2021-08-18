@@ -2,15 +2,22 @@ package tech.simter.util
 
 import org.modelmapper.ModelMapper
 import org.modelmapper.Provider
-import java.util.*
 import kotlin.reflect.full.memberProperties
 
 /**
- * Bean property copy util tools.
+ * Bean util tools.
  *
  * @author RJ
  */
 object BeanUtils {
+  /** Convert [bean] property-value pair to a [Map] */
+  fun toMap(bean: Any, vararg excludeProperties: String): Map<String, Any?> {
+    return (
+      if (excludeProperties.isEmpty()) bean::class.memberProperties
+      else bean::class.memberProperties.filterNot { excludeProperties.contains(it.name) }
+      ).associate { it.name to it.getter.call(bean) }
+  }
+
   /**
    * Get the default [ModelMapper] instance,
    *
