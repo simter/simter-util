@@ -1,5 +1,9 @@
 # simter-util changelog
 
+## 2.1.0 - 2021-08-18
+
+- Add method `tech.simter.util.BeanUtils.toMap(bean: Any, vararg excludeProperties: String): Map<String, Any?>`
+
 ## 2.0.0 - 2020-11-19
 
 - Upgrade to simter-dependencies-2.0.0
