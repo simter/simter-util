@@ -1,5 +1,9 @@
 # simter-util changelog
 
+## 3.0.0 - 2022-06-21
+
+- Upgrade to simter-dependencies-3.0.0 (jdk-17)
+
 ## 2.1.0 - 2021-08-18
 
 - Add method `tech.simter.util.BeanUtils.toMap(bean: Any, vararg excludeProperties: String): Map<String, Any?>`
