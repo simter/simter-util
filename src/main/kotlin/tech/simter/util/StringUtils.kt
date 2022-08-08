@@ -14,7 +14,7 @@ object StringUtils {
   private val caseRegex = Regex("([A-Z][a-z]+)")
 
   /**
-   * Convert a came-case string to a underscore string.
+   * Convert a camel-case string to an underscore string.
    *
    * Default return lower-case string. Use [caseType] to change it.
    *
@@ -27,10 +27,10 @@ object StringUtils {
    * - "myOfficeWork" | "MyOfficeWork" to my_office_work
    */
   fun underscore(source: String, caseType: CaseType = CaseType.LowerCase): String {
-    val underscore = caseRegex.replace(source.decapitalize()) { "_${it.value}" }
+    val underscore = caseRegex.replace(source.replaceFirstChar { it.lowercase() }) { "_${it.value}" }
     return when (caseType) {
-      CaseType.LowerCase -> underscore.toLowerCase()
-      CaseType.UpperCase -> underscore.toUpperCase()
+      CaseType.LowerCase -> underscore.lowercase()
+      CaseType.UpperCase -> underscore.uppercase()
       else -> underscore
     }
   }
