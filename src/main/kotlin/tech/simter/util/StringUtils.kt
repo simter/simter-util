@@ -1,5 +1,7 @@
 package tech.simter.util
 
+import org.apache.commons.text.CaseUtils.toCamelCase
+
 /**
  * String util tools.
  *
@@ -33,5 +35,21 @@ object StringUtils {
       CaseType.UpperCase -> underscore.uppercase()
       else -> underscore
     }
+  }
+
+  /**
+   * Convert an underscore string to a camel-case string.
+   *
+   * Examples:
+   *
+   * - "a" to "a"
+   * - "A" to "a"
+   * - "abc" | "Abc" | "ABC" to "abc"
+   * - "ab_cd" | "AB_CD"  to "abCd"
+   * - "abc_" | "_abc" to "abc"
+   * - "my_office_work" | "MY_OFFICE_WORK" to "myOfficeWork"
+   */
+  fun camelcase(source: String): String {
+    return toCamelCase(source, false, '_')
   }
 }
