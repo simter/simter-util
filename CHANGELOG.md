@@ -1,5 +1,11 @@
 # simter-util changelog
 
+## 3.1.0 - 2022-09-02
+
+- Add `StringUtils.camelcase` method
+- Polishing to remove kotlin deprecation
+- Upgrade to simter-dependencies-3.1.0
+
 ## 3.0.0 - 2022-06-21
 
 - Upgrade to simter-dependencies-3.0.0 (jdk-17)
@@ -61,5 +67,5 @@
 
 ## 0.3.0 - 2017-12-12
 
-- Add BeanUtils.assign (similar to JavaScript `Object.assign` method)
+- Add `BeanUtils.assign` (similar to JavaScript `Object.assign` method)
 - Add XPathUtils to find xml node with standard xpath
